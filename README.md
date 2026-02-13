@@ -29,7 +29,7 @@ Ce projet implémente un système de notifications asynchrone pour un réseau so
 
 ## Flux de données
 
-![structure](images/fluxdonnees.png)
+![flux](images/fluxdonnees.png)
 
 ---
 
