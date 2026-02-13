@@ -29,44 +29,7 @@ Ce projet implémente un système de notifications asynchrone pour un réseau so
 
 ## Flux de données
 
-```
-┌─────────────────────┐
-│ Utilisateur crée    │
-│ un post             │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ PostEventPublisher  │ ← Publie "POST_CREATED|userId:est_rvp|postId:post_100|..."
-└──────────┬──────────┘
-           │
-           ▼
-    ┌──────────────┐
-    │ POST_EVENTS  │ ← Topic JMS (tous les subscribers reçoivent le message)
-    │   (Topic)    │
-    └──────┬───────┘
-           │
-           ▼
-┌──────────────────────┐
-│ NotificationGenerator│ ← Subscriber du Topic
-│                      │   • Reçoit l'événement
-│                      │   • Identifie les followers (est_rvp, oumou_cmr, william_jkp)
-│                      │   • Génère 3 notifications
-└──────────┬───────────┘
-           │
-           ▼
-┌──────────────────────┐
-│ NOTIFICATION_QUEUE   │ ← Queue JMS (stockage des notifications)
-│      (Queue)         │
-└──────────┬───────────┘
-           │
-           ▼
-┌──────────────────────┐
-│ NotificationSender   │ ← Consumer de la Queue
-│                      │   • Consomme les notifications une par une
-│                      │   • Envoie les notifications (simulé)
-└──────────────────────┘
-```
+![structure](images/fluxdonnees.png)
 
 ---
 
